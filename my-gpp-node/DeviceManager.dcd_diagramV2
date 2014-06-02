@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="http://sca.jpeojtrs.mil/dcd" xmlns:diagram="http://sca.jpeojtrs.mil/diagram" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_AWxUQeplEeO1WIrOoYOFOA" type="Dcd" name="DeviceManager.dcd_diagramV2" measurementUnit="Pixel">
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_AWxUQuplEeO1WIrOoYOFOA"/>
+  <styles xmi:type="diagram:EObjectContainerStyle" xmi:id="_AWxUQ-plEeO1WIrOoYOFOA" name="FindByStubContainer"/>
+  <element xmi:type="DeviceConfiguration" href="DeviceManager.dcd.xml#DCE:d3d0a48b-b220-415a-a966-3e6b97cd51a4"/>
+</notation:Diagram>
