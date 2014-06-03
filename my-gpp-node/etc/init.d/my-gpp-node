@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+# chkconfig: 2345 92 8
+# description: ${serviceName} Node
+#
+export serviceName=my-gpp-node
+
+# Get function from functions library
+. /etc/init.d/functions
+
+source /etc/profile.d/redhawk.sh
+source /etc/profile.d/redhawk-sdrroot.sh
+
+# Start the service FOO
+start() {
+        initlog -c "echo -n Starting ${serviceName}:"
+        $OSSIEHOME/bin/nodeBooter -d /nodes/${serviceName}/DeviceManager.dcd.xml
+
+        ### Create the lock file ###
+        touch /var/lock/subsys/${serviceName}
+        success $"${serviceName} server startup"
+        echo
+}
+# Restart the service FOO
+stop() {
+        initlog -c "echo -n Stopping FOO server: "
+        killproc ${serviceName}
+
+        ### Now, delete the lock file ###
+        rm -f /var/lock/subsys/${serviceName}
+        echo
+}
+### main logic ###
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  status)
+        status ${serviceName}
+        ;;
+  restart|reload|condrestart)
+        stop
+        start
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+exit 0
