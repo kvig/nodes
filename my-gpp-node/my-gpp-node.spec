@@ -31,9 +31,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}
 %__mkdir_p "$RPM_BUILD_ROOT%{_prefix}/dev/nodes/%{name}"
 %__install -m 644 DeviceManager.dcd.xml $RPM_BUILD_ROOT%{_prefix}/dev/nodes/%{name}/DeviceManager.dcd.xml
 %__install -m 644 DeviceManager.dcd.xml.template $RPM_BUILD_ROOT%{_prefix}/dev/nodes/%{name}/DeviceManager.dcd.xml.template
+%__mkdir_p "$RPM_BUILD_ROOT%{_sysconfdir}/init.d"
+%__install -m 755 etc/init.d/%{name} $RPM_BUILD_ROOT%{_sysconfdir}/init.d/%{name}
 
 %files
 %defattr(-,redhawk,redhawk)
 %dir %{_prefix}/dev/nodes/%{name}
-%{_prefix}/dev/nodes/%{name}/DeviceManager.dcd.xml
+%config %{_prefix}/dev/nodes/%{name}/DeviceManager.dcd.xml
 %{_prefix}/dev/nodes/%{name}/DeviceManager.dcd.xml.template
+%attr(755, root, root) %{_sysconfdir}/init.d/%{name}
