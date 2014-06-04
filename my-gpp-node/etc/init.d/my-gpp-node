@@ -4,6 +4,7 @@
 # description: ${serviceName} Node
 #
 export serviceName=my-gpp-node
+export pidFile=/var/run/${serviceName}
 
 # Get function from functions library
 . /etc/init.d/functions
@@ -11,10 +12,18 @@ export serviceName=my-gpp-node
 source /etc/profile.d/redhawk.sh
 source /etc/profile.d/redhawk-sdrroot.sh
 
+export userName=redhawk
+
 # Start the service FOO
 start() {
         initlog -c "echo -n Starting ${serviceName}:"
-        $OSSIEHOME/bin/nodeBooter -d /nodes/${serviceName}/DeviceManager.dcd.xml
+        $OSSIEHOME/bin/nodeBooter -d /nodes/${serviceName}/DeviceManager.dcd.xml \
+		--daemon \
+		--pidfile ${pidFile} \
+		--user ${userName} \
+		-logcfgfile ${SDRROOT}/logging/cfg/${serviceName}.log4j \
+		-debug ${debugLevel} \
+		> ${SDRROOT}/logging/logs/${serviceName}.out 2>&1
 
         ### Create the lock file ###
         touch /var/lock/subsys/${serviceName}
