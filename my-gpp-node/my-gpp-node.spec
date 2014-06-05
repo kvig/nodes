@@ -34,6 +34,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}
 %__mkdir_p "$RPM_BUILD_ROOT%{_prefix}/logging/logs"
 %__mkdir_p "$RPM_BUILD_ROOT%{_prefix}/logging/cfg"
 %__install -m 644 %{name}.log4j $RPM_BUILD_ROOT%{_prefix}/logging/cfg/%{name}.log4j
+%__install -m 644 %{name}.log4j $RPM_BUILD_ROOT%{_prefix}/logging/cfg/my-gpp.log4j
 %__mkdir_p "$RPM_BUILD_ROOT%{_sysconfdir}/init.d"
 %__install -m 755 etc/init.d/%{name} $RPM_BUILD_ROOT%{_sysconfdir}/init.d/%{name}
 
@@ -41,6 +42,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}
 %defattr(-,redhawk,redhawk)
 %dir %{_prefix}/logging/logs
 %config %{_prefix}/logging/cfg/%{name}.log4j
+%config %{_prefix}/logging/cfg/my-gpp.log4j
 %dir %{_prefix}/dev/nodes/%{name}
 %config %{_prefix}/dev/nodes/%{name}/DeviceManager.dcd.xml
 %{_prefix}/dev/nodes/%{name}/DeviceManager.dcd.xml.template
